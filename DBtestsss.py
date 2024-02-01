@@ -43,6 +43,8 @@ if st.button("送信"):
 
 # Gitコマンドを実行
     try:
+    #クローン作製
+        subprocess.check_call(['git','clone',''])
     # Gitのユーザー情報を設定
         subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
         subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
