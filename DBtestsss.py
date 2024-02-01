@@ -3,7 +3,7 @@ import subprocess
 import os
 import streamlit as st
 
-st.title('DBテストsubprocessに賭けた版！!!')
+st.title('DBテストsubprocessに賭けた版！!')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
@@ -33,7 +33,7 @@ if st.button("送信"):
         #subprocess.check_call(['git', 'fetch', 'origin'])
         subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
         subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
-        subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
+        #subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
         subprocess.check_call(['git', 'push', 'origin', 'main'])
         st.write("データベースがGitHubリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
