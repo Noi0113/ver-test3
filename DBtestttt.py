@@ -33,4 +33,4 @@ if user_input:
     subprocess.run(["git", "commit", "-m", "Update database file"])
 
     # 変更をGitHubにプッシュ
-    subprocess.run(["git", "push", "origin", "master"])
+    subprocess.run(["git", "push", "origin", "main"])
