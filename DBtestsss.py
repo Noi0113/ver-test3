@@ -2,7 +2,7 @@ import sqlite3
 import subprocess
 import streamlit as st
 
-st.title('DBテスト！3')
+st.title('DBテスト！！！3')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
@@ -18,9 +18,10 @@ if st.button("送信"):
 
     # Gitコマンドを実行
     try:
-        subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
+        subprocess.check_call(['git', 'add', '--all'])
         subprocess.check_call(['git', 'commit', '-m', 'Update database'])
         subprocess.check_call(['git', 'push'])
         st.write("データベースがGitHubリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
         st.write("エラーが発生しました：", e)
+
