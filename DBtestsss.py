@@ -2,7 +2,7 @@ import sqlite3
 import subprocess
 import streamlit as st
 
-st.title('DBテスト！！！3')
+st.title('DBテスト！3')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
@@ -13,6 +13,13 @@ if st.button("送信"):
     c.execute("CREATE TABLE IF NOT EXISTS user_inputs (input TEXT)")
     c.execute("INSERT INTO user_inputs VALUES (?)", (user_input,))
     conn.commit()
+
+    # データベースの内容を表示
+    c.execute("SELECT * FROM user_inputs")
+    rows = c.fetchall()
+    for row in rows:
+        st.write(row)
+
     conn.close()
     st.write(f"あなたが入力したテキスト: {user_input}")
 
@@ -24,4 +31,3 @@ if st.button("送信"):
         st.write("データベースがGitHubリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
         st.write("エラーが発生しました：", e)
-
