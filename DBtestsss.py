@@ -1,5 +1,6 @@
 import sqlite3
 import subprocess
+import os
 import streamlit as st
 
 st.title('DBテスト！メアド編集版3')
