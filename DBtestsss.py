@@ -6,7 +6,7 @@ import streamlit as st
 # カレントディレクトリをリポジトリのディレクトリに変更
 #os.chdir('ver-test3')
 
-st.title('DBテストsubprocessに賭けた版!！！！')
+st.title('DBテストsubprocessに賭けた版！')
 
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
@@ -41,8 +41,8 @@ if st.button("送信"):
         # リモートリポジトリの最新情報を取得
         subprocess.check_call(['git', 'pull', 'origin', 'main'])
 
-        # リモートリポジトリにプッシュ（SSH接続）
-        subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
+        # リモートリポジトリにプッシュ（html接続）
+        subprocess.check_call(['git', 'push', 'https://github.com/Noi0113/ver-test3.git', 'main'])
 
         print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
