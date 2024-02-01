@@ -30,7 +30,11 @@ if st.button("送信"):
         subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
         subprocess.check_call(['git', 'add', '--all'])
         subprocess.check_call(['git', 'commit', '-m', 'Update database'])
-        subprocess.check_call(['git', 'push'])
+        subprocess.check_call(['git', 'fetch', 'origin'])
+        subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
+        subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
+        subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
+        subprocess.check_call(['git', 'push', 'origin', 'main'])
         st.write("データベースがGitHubリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
         st.write("エラーが発生しました：", e)
