@@ -70,7 +70,7 @@ try:
     subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
 
     # リモートリポジトリにプッシュ（HTTPS接続）
-    subprocess.check_call(['git', 'push', '', 'main'])
+    subprocess.check_call(['git', 'push', 'https://github.com/Noi0113/ver-test3.git', 'main'])
 
     print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
 except subprocess.CalledProcessError as e:
