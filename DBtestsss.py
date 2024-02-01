@@ -41,8 +41,8 @@ if st.button("送信"):
 
 
     #クローン作製
-subprocess.check_call(['git','clone','https://github.com/Noi0113/ver-test3.git'])
-subprocess.check_call(['cd', 'ver-test3'])
+    subprocess.check_call(['git','clone','https://github.com/Noi0113/ver-test3.git'])
+    subprocess.check_call(['cd', 'ver-test3'])
 # Gitコマンドを実行
     try:
     
