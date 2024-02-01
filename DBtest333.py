@@ -3,9 +3,9 @@ import sqlite3
 from github import Github
 
 # GitHubアクセストークンとリポジトリの情報
-github_access_token = "YourAccessToken"
-repository_owner = "Owner"
-repository_name = "Repository"
+github_access_token = "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"
+repository_owner = "KNo0113"
+repository_name = "ver-test3"
 database_file_path = "test-monketsu3.db"
 
 # Streamlitアプリケーション
@@ -19,7 +19,7 @@ def main():
         # SQLiteデータベースへの接続とデータの挿入
         conn = sqlite3.connect(database_file_path)
         c = conn.cursor()
-        c.execute("INSERT INTO data_table (column_name) VALUES (?)", (data_input,))
+        c.execute("INSERT INTO TestTable3 (univ) VALUES (?)", (data_input,))
         conn.commit()
         conn.close()
 
