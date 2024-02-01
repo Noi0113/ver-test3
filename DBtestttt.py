@@ -2,7 +2,7 @@ import streamlit as st
 import sqlite3
 import subprocess
 
-st.title('できたかもしれない')
+st.title('できたかもしれない?????')
 # データベースに接続
 conn = sqlite3.connect('test-monketsu3.db')
 c = conn.cursor()
