@@ -1,6 +1,6 @@
 import streamlit as st
 import sqlite3
-from github import Github
+#from github import Github
 
 # GitHubアクセストークンとリポジトリの情報
 github_access_token = "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"
