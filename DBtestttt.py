@@ -12,6 +12,11 @@ user_input = st.text_input("Please enter your data")
 
 # ユーザーが何かを入力した場合
 if user_input:
+    c.execute("SELECT * FROM TestTable")
+    rows = c.fetchall()
+    for row in rows:
+        st.write(row)
+
     # SQLクエリを作成（ここではテーブル名を 'your_table' と仮定）
     query = f"INSERT INTO TestTable (univ) VALUES ('{user_input}')"
 
