@@ -3,6 +3,7 @@ import subprocess
 import os
 import streamlit as st
 
+os.chdir('ver-test3')
 st.title('DBテストsubprocessに賭けた版!')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
@@ -45,7 +46,6 @@ if st.button("送信"):
 # Gitコマンドを実行
     try:
         #subprocess.check_call(['git','clone','https://github.com/Noi0113/ver-test3.git'])
-        subprocess.check_call(['cd', 'ver-test3'])
     # Gitのユーザー情報を設定
         subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
         subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
