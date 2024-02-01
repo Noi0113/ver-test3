@@ -6,7 +6,7 @@ import streamlit as st
 # カレントディレクトリをリポジトリのディレクトリに変更
 #os.chdir('ver-test3')
 
-st.title('DBテストsubprocessに賭けた版！！')
+st.title('DBテストsubprocessに賭けた版！！!')
 
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
@@ -24,6 +24,12 @@ if st.button("送信"):
     st.write(f"あなたが入力したテキスト: {user_input}")
 
     try:
+        
+        # Gitのユーザー情報を設定
+        subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
+        subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
+
+        
         # 変更をステージング
         subprocess.check_call(['git', 'add', '--all'])
 
@@ -36,10 +42,7 @@ if st.button("送信"):
 
         # リモートリポジトリの最新情報を取得
         subprocess.check_call(['git', 'pull', 'origin', 'main'])
-        
-        # Gitのユーザー情報を設定
-        subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
-        subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
+
         
         # リモートリポジトリにプッシュ（ssh接続）
         subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
