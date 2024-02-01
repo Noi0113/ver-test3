@@ -61,7 +61,7 @@ try:
     subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
 
     # リモートリポジトリの最新情報を取得
-    subprocess.check_call(['git', 'fetch', 'origin'])
+    #subprocess.check_call(['git', 'fetch', 'origin'])
 
     # リモートリポジトリから最新の変更を取得
     subprocess.check_call(['git', 'pull', 'origin', 'main'])
@@ -69,8 +69,8 @@ try:
     # 変更をコミット
     subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
 
-    # リモートリポジトリにプッシュ（HTTPS接続）
-    subprocess.check_call(['git', 'push', 'https://github.com/Noi0113/ver-test3.git', 'main'])
+    # リモートリポジトリにプッシュ（SSH接続）
+    subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
 
     print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
 except subprocess.CalledProcessError as e:
