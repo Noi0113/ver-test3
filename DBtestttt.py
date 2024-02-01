@@ -1,8 +1,8 @@
 import streamlit as st
 import sqlite3
-import os
 import subprocess
 
+st.title('できたかもしれない')
 # データベースに接続
 conn = sqlite3.connect('test-monketsu3.db')
 c = conn.cursor()
