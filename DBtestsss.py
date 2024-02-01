@@ -41,37 +41,36 @@ if st.button("送信"):
 
 
 
-
 # Gitコマンドを実行
-try:
+    try:
     # Gitのユーザー情報を設定
-    subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
-    subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
+        subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
+        subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
 
     # 変更をステージング
-    subprocess.check_call(['git', 'add', '--all'])
+        subprocess.check_call(['git', 'add', '--all'])
 
     # コミット
-    subprocess.check_call(['git', 'commit', '-m', 'Update database'])
+        subprocess.check_call(['git', 'commit', '-m', 'Update database'])
 
     # リモートのmainブランチを最新状態にリセット
-    subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
+        subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
 
     # 変更を再度ステージング
-    subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
+        subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
 
     # リモートリポジトリの最新情報を取得
-    #subprocess.check_call(['git', 'fetch', 'origin'])
+        subprocess.check_call(['git', 'fetch', 'origin'])
 
     # リモートリポジトリから最新の変更を取得
-    subprocess.check_call(['git', 'pull', 'origin', 'main'])
+        subprocess.check_call(['git', 'pull', 'origin', 'main'])
 
     # 変更をコミット
-    subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
+        subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
 
-    # リモートリポジトリにプッシュ（SSH接続）
-    subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
+    # リモートリポジトリにプッシュ（HTTPS接続）
+        subprocess.check_call(['git', 'push', '', 'main'])
 
-    print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
-except subprocess.CalledProcessError as e:
-    print("エラーが発生しました：", e)
+        print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
+    except subprocess.CalledProcessError as e:
+        print("エラーが発生しました：", e)
