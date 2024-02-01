@@ -40,7 +40,7 @@ if st.button("送信"):
         subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
 
         # 変更を再度ステージング
-        #subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
+        subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
 
         # リモートリポジトリの最新情報を取得
         subprocess.check_call(['git', 'fetch', 'origin'])
