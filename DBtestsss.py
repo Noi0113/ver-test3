@@ -2,9 +2,7 @@ import sqlite3
 import subprocess
 import os
 import streamlit as st
-#クローン作製
-subprocess.check_call(['git','clone','https://github.com/Noi0113/ver-test3.git'])
-subprocess.check_call(['cd', 'ver-test3'])
+
 st.title('DBテストsubprocessに賭けた版!')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
@@ -42,7 +40,9 @@ if st.button("送信"):
      #   st.write("エラーが発生しました：", e)
 
 
-
+    #クローン作製
+subprocess.check_call(['git','clone','https://github.com/Noi0113/ver-test3.git'])
+subprocess.check_call(['cd', 'ver-test3'])
 # Gitコマンドを実行
     try:
     
