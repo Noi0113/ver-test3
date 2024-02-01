@@ -3,8 +3,8 @@ import subprocess
 import os
 import streamlit as st
 
-os.chdir('ver-test3')
-st.title('DBテストsubprocessに賭けた版!')
+#os.chdir('ver-test3')
+st.title('DBテストsubprocessに賭けた版!！')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
@@ -43,36 +43,34 @@ if st.button("送信"):
 
     #クローン作製
 
-# Gitコマンドを実行
     try:
-        #subprocess.check_call(['git','clone','https://github.com/Noi0113/ver-test3.git'])
-    # Gitのユーザー情報を設定
+        # Gitのユーザー情報を設定
         subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
         subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
 
-    # 変更をステージング
+        # 変更をステージング
         subprocess.check_call(['git', 'add', '--all'])
 
-    # コミット
+        # コミット
         subprocess.check_call(['git', 'commit', '-m', 'Update database'])
 
-    # リモートのmainブランチを最新状態にリセット
+        # リモートのmainブランチを最新状態にリセット
         subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
 
-    # 変更を再度ステージング
+        # 変更を再度ステージング
         #subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
 
-    # リモートリポジトリの最新情報を取得
+        # リモートリポジトリの最新情報を取得
         subprocess.check_call(['git', 'fetch', 'origin'])
 
-    # リモートリポジトリから最新の変更を取得
+        # リモートリポジトリから最新の変更を取得
         subprocess.check_call(['git', 'pull', 'origin', 'main'])
 
-    # 変更をコミット
+        # 変更をコミット
         subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
 
-    # リモートリポジトリにプッシュ（HTTPS接続）
-        subprocess.check_call(['git', 'push', 'https://github.com/Noi0113/ver-test3.git', 'main'])
+        # リモートリポジトリにプッシュ（SSH接続）
+        subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
 
         print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
