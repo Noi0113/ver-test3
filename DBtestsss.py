@@ -3,7 +3,7 @@ import subprocess
 import os
 import streamlit as st
 
-st.title('DBテストsubprocessに賭けた版！！！！！！！')
+st.title('DBテストsubprocessに賭けた版！')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
@@ -49,7 +49,7 @@ try:
     subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
 
     # 変更をステージング
-    subprocess.check_call(['git', 'add', '--all'])
+    subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
 
     # コミット
     subprocess.check_call(['git', 'commit', '-m', 'Update database'])
