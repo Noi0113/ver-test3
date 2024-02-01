@@ -3,8 +3,11 @@ import subprocess
 import os
 import streamlit as st
 
+# カレントディレクトリをリポジトリのディレクトリに変更
 #os.chdir('ver-test3')
-st.title('DBテストsubprocessに賭けた版!')
+
+st.title('DBテストsubprocessに賭けた版!！！！')
+
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
@@ -15,14 +18,9 @@ if st.button("送信"):
     c.execute("CREATE TABLE IF NOT EXISTS user_inputs (input TEXT)")
     c.execute("INSERT INTO user_inputs VALUES (?)", (user_input,))
     conn.commit()
+    conn.close()
 
     # データベースの内容を表示
-    c.execute("SELECT * FROM user_inputs")
-    rows = c.fetchall()
-    for row in rows:
-        st.write(row)
-
-    conn.close()
     st.write(f"あなたが入力したテキスト: {user_input}")
 
     try:
@@ -37,19 +35,11 @@ if st.button("送信"):
         subprocess.check_call(['git', 'commit', '-m', 'Update database'])
 
         # リモートのmainブランチを最新状態にリセット
+        subprocess.check_call(['git', 'fetch', 'origin', 'main'])
         subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
 
-        # 変更を再度ステージング
-        subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
-
         # リモートリポジトリの最新情報を取得
-        subprocess.check_call(['git', 'fetch', 'origin'])
-
-        # リモートリポジトリから最新の変更を取得
         subprocess.check_call(['git', 'pull', 'origin', 'main'])
-
-        # 変更をコミット
-        subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
 
         # リモートリポジトリにプッシュ（SSH接続）
         subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
