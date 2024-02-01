@@ -41,7 +41,6 @@ if st.button("送信"):
 
 
 
-import subprocess
 
 # Gitコマンドを実行
 try:
@@ -70,8 +69,8 @@ try:
     # 変更をコミット
     subprocess.check_call(['git', 'commit', '-m', 'Add SQLite database'])
 
-    # リモートリポジトリにプッシュ（SSH接続）
-    subprocess.check_call(['git', 'push', 'origin', 'main'])
+    # リモートリポジトリにプッシュ（HTTPS接続）
+    subprocess.check_call(['git', 'push', '', 'main'])
 
     print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
 except subprocess.CalledProcessError as e:
