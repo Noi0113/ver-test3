@@ -27,7 +27,7 @@ if user_input:
     conn.commit()
 
     # データベースファイルをGitに追加
-    subprocess.run(["git", "add", "your_database.db"])
+    subprocess.run(["git", "add", "test-monketsu3.db"])
 
     # 変更をコミット
     subprocess.run(["git", "commit", "-m", "Update database file"])
