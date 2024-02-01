@@ -41,8 +41,8 @@ if st.button("送信"):
         subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
         subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
         
-        # リモートリポジトリにプッシュ（html接続）
-        subprocess.check_call(['git', 'push', 'https://github.com/Noi0113/ver-test3.git', 'main'])
+        # リモートリポジトリにプッシュ（ssh接続）
+        subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
 
         print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
