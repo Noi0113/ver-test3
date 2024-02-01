@@ -2,7 +2,7 @@ import sqlite3
 import subprocess
 import streamlit as st
 
-st.title('DBテスト！3')
+st.title('DBテスト！！3')
 # ユーザーからの入力を収集
 user_input = st.text_input("何か入力してください")
 
