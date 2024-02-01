@@ -49,7 +49,7 @@ try:
     subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
 
     # 変更をステージング
-    subprocess.check_call(['git', 'add', 'test-monketsu3.db'])
+    subprocess.check_call(['git', 'add', '--all'])
 
     # コミット
     subprocess.check_call(['git', 'commit', '-m', 'Update database'])
