@@ -22,6 +22,10 @@ local_clone_dir = "ver-test3"
 # ローカルの変更をリモートリポジトリにプッシュ
 def push_to_remote():
     try:
+        #何者か名乗る
+        subprocess.run(["git", "config", "--global", "user.name", "Noi0113"], check=True)
+        subprocess.run(["git", "config", "--global", "user.email", "s2110524@u.tsukuba.ac.jp"], check=True)
+        
         # 変更をローカルリポジトリに追加
         subprocess.run(["git", "add", database_path])
 
