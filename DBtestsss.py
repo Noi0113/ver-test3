@@ -3,7 +3,7 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!!!!!')
+st.title('確認!')
 # StreamlitのWebサイトで入力された情報を取得
 user_input = st.text_input('Enter your data')
 
@@ -14,8 +14,6 @@ c.execute("CREATE TABLE IF NOT EXISTS user_inputs (input TEXT)")
 c.execute("INSERT INTO user_inputs VALUES (?)", (user_input,))
 conn.commit()
 conn.close()
-
-
 
 try:
     # 現在のリポジトリが存在するリポジトリに移動
@@ -32,12 +30,14 @@ try:
     # 変更をコミット
     subprocess.run(['git', 'commit', '-m', 'DB changes'], check=True)
 
+    # Gitのユーザー情報を設定
+    subprocess.run(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'], check=True)
+    subprocess.run(['git', 'config', '--global', 'user.name', 'Noi0113'], check=True)
+    subprocess.run(['git', 'config', '--global', 'credential.helper', 'store'], check=True)
+
     # 変更をプッシュ
     push = subprocess.run(['git', 'push', 'origin', 'main'], check=True)
 
-    # Gitのユーザー情報を設定
-    subprocess.run(['git', 'config', '--global', 'credential.helper', 'store'], check=True)
-    
     # もしプッシュにエラーが発生したらリモートリポジトリの最新の変更を取得してから再度プッシュ
     if push.returncode != 0:
         subprocess.run(['git', 'fetch', 'origin'], check=True)
