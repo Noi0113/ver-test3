@@ -31,12 +31,12 @@ if st.button("送信"):
 
 
         # ①現在のリポジトリが存在するリポジトリに移動
-        os.chdir('/path/to/your/repository')
+        current_directory = os.getcwd()
 
         # ②もしリポジトリが存在していなければそのリポジトリのクローンをつくる
         if not os.path.exists('.git'):
             subprocess.run(['git', 'clone', 'https://github.com/Noi0113/ver-test3.git'])
-            os.chdir('/path/to/your/repository')
+            current_directory = os.getcwd()
 
         # ③DBの変更を追加する
         subprocess.run(['git', 'add', '.'])
