@@ -4,7 +4,7 @@ import streamlit as st
 
 # リポジトリのURLとクローン先のディレクトリパスを指定します。
 repo_url = "https://github.com/Noi0113/ver-test3.git"
-clone_dir = "/path/to/clone/directory"
+clone_dir = "\Users\81907\ver-test3"
 
 # git cloneコマンドを実行します。
 subprocess.check_call(["git", "clone", repo_url, clone_dir], check=True)
@@ -30,6 +30,9 @@ conn.close()
 
 # リポジトリのディレクトリに移動します。
 subprocess.check_call(["cd", clone_dir], check=True)
+
+# git pullコマンドを実行します。
+subprocess.check_call(["git", "pull"], check=True)
 
 # git addコマンドを実行します。
 subprocess.check_call(["git", "add", "."], check=True)
