@@ -3,7 +3,7 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!')
+st.title('確認!!!!!')
 # StreamlitのWebサイトで入力された情報を取得
 user_input = st.text_input('Enter your data')
 
@@ -36,9 +36,8 @@ try:
     push = subprocess.run(['git', 'push', 'origin', 'main'], check=True)
 
     # Gitのユーザー情報を設定
-    subprocess.run(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'], check=True)
-    subprocess.run(['git', 'config', '--global', 'user.name', 'KNo0113'], check=True)
-
+    subprocess.run(['git', 'config', '--global', 'credential.helper', 'store'], check=True)
+    
     # もしプッシュにエラーが発生したらリモートリポジトリの最新の変更を取得してから再度プッシュ
     if push.returncode != 0:
         subprocess.run(['git', 'fetch', 'origin'], check=True)
