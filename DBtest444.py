@@ -3,14 +3,14 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!!!')
+st.title('確認!')
 # StreamlitのWebサイトで入力された情報を取得
 input_data = st.text_input('Enter your data')
 
 # リポジトリのディレクトリが存在するか確認
 if not os.path.exists('ver-test3'):
     # リポジトリをクローン
-    subprocess.run(['git', 'clone', ''], check=True)
+    subprocess.run(['git', 'clone', 'https://github.com/Noi0113/ver-test3.git'], check=True)
 else:
     # ローカルリポジトリに移動
     os.chdir('ver-test3')
