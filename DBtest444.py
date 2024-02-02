@@ -3,7 +3,7 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!')
+st.title('確認!!')
 # StreamlitのWebサイトで入力された情報を取得
 input_data = st.text_input('Enter your data')
 
@@ -37,4 +37,4 @@ subprocess.run(["git", "config", "--global", "user.email", "s2110524@u.tsukuba.a
 subprocess.run(['git', 'commit', '-m', 'Update database file'], check=True)
 
 # リモートリポジトリにpush
-subprocess.run(['git', 'push'], check=True)
+subprocess.run(['git', 'push','origin','main'], check=True)
