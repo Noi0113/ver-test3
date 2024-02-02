@@ -1,71 +1,40 @@
 import subprocess
 import sqlite3
-
 import streamlit as st
 import os
 
-# アプリのスクリプトがあるディレクトリ
-app_dir = os.path.dirname(os.path.abspath(__file__))
-# データベースファイルの相対パス
-database_path = os.path.join(app_dir, "test-monketsu3.db")
-# データベースファイルのパス
-#database_path = "temp_clone_dir/path/to/database.db"
+st.title('確認!!!')
+# StreamlitのWebサイトで入力された情報を取得
+input_data = st.text_input('Enter your data')
 
-# リモートリポジトリのURL
-remote_repo_url = "https://github.com/Noi0113/ver-test3.git"
-# ローカルにクローンするディレクトリ
-local_clone_dir = "ver-test3"
+# リポジトリのディレクトリが存在するか確認
+if not os.path.exists('ver-test3'):
+    # リポジトリをクローン
+    subprocess.run(['git', 'clone', ''], check=True)
+else:
+    # ローカルリポジトリに移動
+    os.chdir('ver-test3')
+    # リポジトリを更新
+    subprocess.run(['git', 'pull'], check=True)
 
+# データベースファイルに書き込み
+conn = sqlite3.connect('test-monketsu3.db')
+c = conn.cursor()
+# ここでは例としてテーブル名を 'TABLE_NAME'、カラム名を 'COLUMN_NAME' としています。
+# 実際には適切なテーブル名とカラム名を指定してください。
+c.execute("INSERT INTO TestTable3 (univ) VALUES (?)", (input_data,))
+conn.commit()
+conn.close()
 
-# Streamlitアプリ
+# 変更をステージング
+subprocess.run(['git', 'add', '.'], check=True)
 
-# ローカルの変更をリモートリポジトリにプッシュ
-def push_to_remote():
-    try:
-        #何者か名乗る
-        subprocess.run(["git", "config", "--global", "user.name", "Noi0113"], check=True)
-        subprocess.run(["git", "config", "--global", "user.email", "s2110524@u.tsukuba.ac.jp"], check=True)
-        
-        # 変更をローカルリポジトリに追加
-        subprocess.run(["git", "add", database_path])
+#何者か
+subprocess.run(["git", "config", "--global", "user.name", "Noi0113"], check=True)
+subprocess.run(["git", "config", "--global", "user.email", "s2110524@u.tsukuba.ac.jp"], check=True)
 
-        # 変更をコミット
-        subprocess.run(["git", "commit", "-m", "Update database"], cwd=local_clone_dir)
+# コミット
+subprocess.run(['git', 'commit', '-m', 'Update database file'], check=True)
 
-        # ローカルの変更をリモートリポジトリにプッシュ
-        subprocess.run(["git", "push", "origin", "main"], cwd=local_clone_dir)
-        return True
-    except subprocess.CalledProcessError:
-        return False
-
-def main():
-    st.title('確認')
-    # 入力データを取得
-    input_data = st.text_input("Enter data:")
-
-    # 入力データをデータベースに書き込む
-    if st.button("Submit"):
-        # データベースに接続
-        conn = sqlite3.connect(database_path)
-        c = conn.cursor()
-        # テーブルが存在しない場合は作成
-        c.execute('''CREATE TABLE IF NOT EXISTS my_table (data TEXT)''')
-        # データを挿入
-        c.execute("INSERT INTO my_table (data) VALUES (?)", (input_data,))
-        # 変更をコミット
-        conn.commit()
-        # 接続を閉じる
-        conn.close()
-        st.success("Data inserted into database successfully!")
-        # リモートリポジトリに変更をプッシュ
-        if push_to_remote():
-            st.success("Changes pushed to remote repository successfully!")
-        else:
-            st.error("Failed to push changes to remote repository!")
-
-# Streamlitアプリを実行
-if __name__ == "__main__":
-    # リモートリポジトリをローカルにクローン
-    subprocess.run(["git", "clone", remote_repo_url, local_clone_dir])
-    main()
-
+# リモートリポジトリにpush
+subprocess.run(['git', 'push'], check=True)
