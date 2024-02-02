@@ -18,6 +18,22 @@ local_clone_dir = "ver-test3"
 
 
 # Streamlitアプリ
+
+# ローカルの変更をリモートリポジトリにプッシュ
+def push_to_remote():
+    try:
+        # 変更をローカルリポジトリに追加
+        subprocess.run(["git", "add", database_path])
+
+        # 変更をコミット
+        subprocess.run(["git", "commit", "-m", "Update database"], cwd=local_clone_dir)
+
+        # ローカルの変更をリモートリポジトリにプッシュ
+        subprocess.run(["git", "push", "origin", "master"], cwd=local_clone_dir)
+        return True
+    except subprocess.CalledProcessError:
+        return False
+
 def main():
     # 入力データを取得
     input_data = st.text_input("Enter data:")
@@ -48,17 +64,3 @@ if __name__ == "__main__":
     subprocess.run(["git", "clone", remote_repo_url, local_clone_dir])
     main()
 
-# ローカルの変更をリモートリポジトリにプッシュ
-def push_to_remote():
-    try:
-        # 変更をローカルリポジトリに追加
-        subprocess.run(["git", "add", database_path])
-
-        # 変更をコミット
-        subprocess.run(["git", "commit", "-m", "Update database"], cwd=local_clone_dir)
-
-        # ローカルの変更をリモートリポジトリにプッシュ
-        subprocess.run(["git", "push", "origin", "master"], cwd=local_clone_dir)
-        return True
-    except subprocess.CalledProcessError:
-        return False
