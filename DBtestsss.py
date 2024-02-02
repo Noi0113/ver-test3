@@ -3,7 +3,7 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!!')
+st.title('確認!')
 # StreamlitのWebサイトで入力された情報を取得
 user_input = st.text_input('Enter your data')
 
@@ -34,19 +34,16 @@ try:
     # Gitのユーザー情報を設定
 
     github_username = os.getenv('GITHUB_USERNAME')
-github_password = os.getenv('GITHUB_PASSWORD')
+    github_password = os.getenv('GITHUB_PASSWORD')
 
-# Gitのユーザー情報を設定
-subprocess.run(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'], check=True)
-subprocess.run(['git', 'config', '--global', 'user.name', 'Noi0113'], check=True)
-
-# Gitの認証情報を設定
-subprocess.run(['git', 'config', '--global', 'credential.helper', 'store'], check=True)
-subprocess.run(['git', 'config', '--global', 'credential.username', github_username], check=True)
-subprocess.run(['git', 'config', '--global', 'credential.password', github_password], check=True)
+    # Gitのユーザー情報を設定
     subprocess.run(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'], check=True)
     subprocess.run(['git', 'config', '--global', 'user.name', 'Noi0113'], check=True)
+
+    # Gitの認証情報を設定
     subprocess.run(['git', 'config', '--global', 'credential.helper', 'store'], check=True)
+    subprocess.run(['git', 'config', '--global', 'credential.username', github_username], check=True)
+    subprocess.run(['git', 'config', '--global', 'credential.password', github_password], check=True)
 
     # 変更をプッシュ
     push = subprocess.run(['git', 'push', 'origin', 'main'], check=True)
