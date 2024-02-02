@@ -29,24 +29,37 @@ if st.button("送信"):
         subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
         subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
 
-        
-        # 変更をステージング
-        subprocess.check_call(['git', 'add', '--all'])
 
-        # コミット
-        subprocess.check_call(['git', 'commit', '-m', 'Update database'])
+        # ①現在のリポジトリが存在するリポジトリに移動
+        os.chdir('/path/to/your/repository')
 
-        # リモートのmainブランチを最新状態にリセット
-        subprocess.check_call(['git', 'fetch', 'origin', 'main'])
-        subprocess.check_call(['git', 'reset', '--hard', 'origin/main'])
+        # ②もしリポジトリが存在していなければそのリポジトリのクローンをつくる
+        if not os.path.exists('.git'):
+            subprocess.run(['git', 'clone', 'https://github.com/Noi0113/ver-test3.git'])
+            os.chdir('/path/to/your/repository')
 
-        # リモートリポジトリの最新情報を取得
-        subprocess.check_call(['git', 'pull', 'origin', 'main'])
+        # ③DBの変更を追加する
+        subprocess.run(['git', 'add', '.'])
 
-        
-        # リモートリポジトリにプッシュ（ssh接続）
-        subprocess.check_call(['git', 'push', 'git@github.com:Noi0113/ver-test3.git', 'main'])
+        # ④変更をプッシュ
+        push = subprocess.run(['git', 'push', 'origin', 'main'])
 
-        print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
+        # ⑤もしpushにエラーがでたら git fetch originを実行しリモートリポジトリの最新の変更を取得
+        if push.returncode != 0:
+            subprocess.run(['git', 'fetch', 'origin'])
+
+        # ⑥ git reset --hard origin/mainを実行しローカルブランチをリモートブランチの最新の状態にリセットする
+            subprocess.run(['git', 'reset', '--hard', 'origin/main'])
+
+        # ⑦DBの変更を追加する
+            subprocess.run(['git', 'add', '.'])
+
+        # ⑧変更をコミットする
+            subprocess.run(['git', 'commit', '-m', 'DB changes'])
+
+        # ⑨変更をプッシュする
+            subprocess.run(['git', 'push', 'origin', 'main'])
+
+            print("データベースの変更がGit上に反映され、リモートリポジトリにプッシュされました。")
     except subprocess.CalledProcessError as e:
         print("エラーが発生しました：", e)
