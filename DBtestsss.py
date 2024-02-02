@@ -27,7 +27,7 @@ if st.button("送信"):
         
         # Gitのユーザー情報を設定
         subprocess.check_call(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'])
-        subprocess.check_call(['git', 'config', '--global', 'user.name', 'KNo0113'])
+        subprocess.check_call(['git', 'config', '--global', 'user.name', 'Noi0113'])
 
 
         # ①現在のリポジトリが存在するリポジトリに移動
