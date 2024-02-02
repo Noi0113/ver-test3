@@ -3,19 +3,19 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!!')
+st.title('確認!')
 # StreamlitのWebサイトで入力された情報を取得
 input_data = st.text_input('Enter your data')
 
 # リポジトリのディレクトリが存在するか確認
 if not os.path.exists('ver-test3'):
     # リポジトリをクローン
-    subprocess.run(['git', 'clone', 'https://github.com/Noi0113/ver-test3.git'], check=True)
+    subprocess.check_call(['git', 'clone', 'https://github.com/Noi0113/ver-test3.git'])
 else:
     # ローカルリポジトリに移動
     os.chdir('ver-test3')
     # リポジトリを更新
-    subprocess.run(['git', 'pull'], check=True)
+    subprocess.check_call(['git', 'pull'])
 
 # データベースファイルに書き込み
 conn = sqlite3.connect('test-monketsu3.db')
@@ -27,14 +27,14 @@ conn.commit()
 conn.close()
 
 # 変更をステージング
-subprocess.run(['git', 'add', '.'], check=True)
+subprocess.check_call(['git', 'add', '.'])
 
-#何者か
-subprocess.run(["git", "config", "--global", "user.name", "Noi0113"], check=True)
-subprocess.run(["git", "config", "--global", "user.email", "s2110524@u.tsukuba.ac.jp"], check=True)
+# 何者か
+subprocess.check_call(["git", "config", "--global", "user.name", "Noi0113"])
+subprocess.check_call(["git", "config", "--global", "user.email", "s2110524@u.tsukuba.ac.jp"])
 
 # コミット
-subprocess.run(['git', 'commit', '-m', 'Update database file'], check=True)
+subprocess.check_call(['git', 'commit', '-m', 'Update database file'])
 
 # リモートリポジトリにpush
-subprocess.run(['git', 'push','origin','main'], check=True)
+subprocess.check_call(['git', 'push','origin','main'])
