@@ -3,7 +3,7 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!!')
+st.title('確認!')
 # StreamlitのWebサイトで入力された情報を取得
 user_input = st.text_input('Enter your data')
 
@@ -15,9 +15,7 @@ c.execute("INSERT INTO user_inputs VALUES (?)", (user_input,))
 conn.commit()
 conn.close()
 
-# Gitのユーザー情報を設定
-subprocess.run(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'], check=True)
-subprocess.run(['git', 'config', '--global', 'user.name', 'KNo0113'], check=True)
+
 
 try:
     # 現在のリポジトリが存在するリポジトリに移動
@@ -36,6 +34,10 @@ try:
 
     # 変更をプッシュ
     push = subprocess.run(['git', 'push', 'origin', 'main'], check=True)
+
+    # Gitのユーザー情報を設定
+    subprocess.run(['git', 'config', '--global', 'user.email', 's2110524@u.tsukuba.ac.jp'], check=True)
+    subprocess.run(['git', 'config', '--global', 'user.name', 'KNo0113'], check=True)
 
     # もしプッシュにエラーが発生したらリモートリポジトリの最新の変更を取得してから再度プッシュ
     if push.returncode != 0:
