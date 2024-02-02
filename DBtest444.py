@@ -39,6 +39,7 @@ def push_to_remote():
         return False
 
 def main():
+    st.title('確認')
     # 入力データを取得
     input_data = st.text_input("Enter data:")
 
