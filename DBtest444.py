@@ -33,7 +33,7 @@ def push_to_remote():
         subprocess.run(["git", "commit", "-m", "Update database"], cwd=local_clone_dir)
 
         # ローカルの変更をリモートリポジトリにプッシュ
-        subprocess.run(["git", "push", "origin", "master"], cwd=local_clone_dir)
+        subprocess.run(["git", "push", "origin", "main"], cwd=local_clone_dir)
         return True
     except subprocess.CalledProcessError:
         return False
