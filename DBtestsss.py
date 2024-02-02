@@ -3,7 +3,7 @@ import sqlite3
 import streamlit as st
 import os
 
-st.title('確認!')
+st.title('確認!!')
 # StreamlitのWebサイトで入力された情報を取得
 user_input = st.text_input('Enter your data')
 
@@ -18,6 +18,7 @@ conn.close()
 try:
     # 現在のリポジトリが存在するリポジトリに移動
     current_directory = os.getcwd()
+    st.write(current_directory)
 
     # もしリポジトリが存在していなければそのリポジトリのクローンを作成
     if not os.path.exists('.git'):
